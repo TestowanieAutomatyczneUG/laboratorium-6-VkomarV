@@ -1,25 +1,53 @@
 import unittest
 
 def roman(n):
-    if n == 1:
-        return "I"
-    elif n == 2:
-        return "II"
-    elif n == 3:
-        return "III"
-    elif n == 4:
-        return "IV"
-    elif n == 5:
-        return "V"
-    elif n == 6:
-        return "VI"
-    elif n == 7:
-        return "VII"
-    elif n == 8:
-        return "VIII"
-    elif n == 9:
-        return "IX"
+    def ones(nn):
+        if nn == 1:
+            return "I"
+        elif nn == 2:
+            return "II"
+        elif nn == 3:
+            return "III"
+        elif nn == 4:
+            return "IV"
+        elif nn == 5:
+            return "V"
+        elif nn == 6:
+            return "VI"
+        elif nn == 7:
+            return "VII"
+        elif nn == 8:
+            return "VIII"
+        elif nn == 9:
+            return "IX"
 
+    def tens(nt):
+        if nt == 1:
+            return "X"
+        elif nt == 2:
+            return "XX"
+        elif nt == 3:
+            return "XXX"
+        elif nt == 4:
+            return "XL"
+        elif nt == 5:
+            return "L"
+        elif nt == 6:
+            return "LX"
+        elif nt == 7:
+            return "LXX"
+        elif nt == 8:
+            return "LXXX"
+        elif nt == 9:
+            return "XC"
+
+    number = ""
+    if n >= 10:
+        number += tens(n//10)
+    if n % 10 > 0:
+        number += ones(n % 10)
+
+    return number
 
 class RomanNumeralsTest(unittest.TestCase):
     def test_1_is_a_single_i(self):
@@ -43,23 +71,22 @@ class RomanNumeralsTest(unittest.TestCase):
     def test_9_being_10_1_is_ix(self):
         self.assertEqual(roman(9), "IX")
 
-    @unittest.skip
+
     def test_20_is_two_x_s(self):
         self.assertEqual(roman(27), "XXVII")
 
-    @unittest.skip
     def test_48_is_not_50_2_but_rather_40_8(self):
         self.assertEqual(roman(48), "XLVIII")
 
-    @unittest.skip
+
     def test_49_is_not_40_5_4_but_rather_50_10_10_1(self):
         self.assertEqual(roman(49), "XLIX")
 
-    @unittest.skip
+
     def test_50_is_a_single_l(self):
         self.assertEqual(roman(59), "LIX")
 
-    @unittest.skip
+
     def test_90_being_100_10_is_xc(self):
         self.assertEqual(roman(93), "XCIII")
 
