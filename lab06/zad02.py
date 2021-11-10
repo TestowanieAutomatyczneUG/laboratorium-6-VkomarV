@@ -68,9 +68,21 @@ def roman(n):
         else:
             return ""
 
+    def thousands(nt):
+        if nt == 1:
+            return "M"
+        elif nt == 2:
+            return "MM"
+        elif nt == 3:
+            return "MMM"
+        else:
+            return ""
+
     number = ""
+    if n >= 1000:
+        number += thousands(n // 1000)
     if n >= 100:
-        number += hundrets(n // 100)
+        number += hundrets(n // 100 % 10)
     if n >= 10:
         number += tens((n // 10) % 10)
     if n % 10 > 0:
@@ -130,10 +142,8 @@ class RomanNumeralsTest(unittest.TestCase):
     def test_900_being_1000_100_is_cm(self):
         self.assertEqual(roman(911), "CMXI")
 
-    @unittest.skip
     def test_1000_is_a_single_m(self):
         self.assertEqual(roman(1024), "MXXIV")
 
-    @unittest.skip
     def test_3000_is_three_m_s(self):
         self.assertEqual(roman(3000), "MMM")
