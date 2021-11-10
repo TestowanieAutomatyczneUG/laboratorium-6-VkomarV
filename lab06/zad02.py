@@ -1,5 +1,6 @@
 import unittest
 
+
 def roman(n):
     def ones(nn):
         if nn == 1:
@@ -20,6 +21,8 @@ def roman(n):
             return "VIII"
         elif nn == 9:
             return "IX"
+        else:
+            return ""
 
     def tens(nt):
         if nt == 1:
@@ -40,6 +43,8 @@ def roman(n):
             return "LXXX"
         elif nt == 9:
             return "XC"
+        else:
+            return ""
 
     def hundrets(nh):
         if nh == 1:
@@ -60,16 +65,18 @@ def roman(n):
             return "DCCC"
         elif nh == 9:
             return "CM"
+        else:
+            return ""
 
     number = ""
     if n >= 100:
-        number += hundrets(n//100)
+        number += hundrets(n // 100)
     if n >= 10:
-        number += tens(n//10 % 100)
+        number += tens((n // 10) % 10)
     if n % 10 > 0:
         number += ones(n % 10)
-    print(number)
     return number
+
 
 class RomanNumeralsTest(unittest.TestCase):
     def test_1_is_a_single_i(self):
@@ -93,41 +100,32 @@ class RomanNumeralsTest(unittest.TestCase):
     def test_9_being_10_1_is_ix(self):
         self.assertEqual(roman(9), "IX")
 
-
     def test_20_is_two_x_s(self):
         self.assertEqual(roman(27), "XXVII")
 
     def test_48_is_not_50_2_but_rather_40_8(self):
         self.assertEqual(roman(48), "XLVIII")
 
-
     def test_49_is_not_40_5_4_but_rather_50_10_10_1(self):
         self.assertEqual(roman(49), "XLIX")
-
 
     def test_50_is_a_single_l(self):
         self.assertEqual(roman(59), "LIX")
 
-
     def test_90_being_100_10_is_xc(self):
         self.assertEqual(roman(93), "XCIII")
-
 
     def test_100_is_a_single_c(self):
         self.assertEqual(roman(141), "CXLI")
 
-
     def test_60_being_50_10_is_lx(self):
         self.assertEqual(roman(163), "CLXIII")
-
 
     def test_400_being_500_100_is_cd(self):
         self.assertEqual(roman(402), "CDII")
 
-
     def test_500_is_a_single_d(self):
         self.assertEqual(roman(575), "DLXXV")
-
 
     def test_900_being_1000_100_is_cm(self):
         self.assertEqual(roman(911), "CMXI")
