@@ -2,18 +2,18 @@ import unittest
 
 class hamming:
     def distance(jeden, dwa):
-        if jeden == "" and dwa == "":
+        if jeden == dwa:
             return 0
+        else:
+            return 1
 
 class HammingTest(unittest.TestCase):
     def test_empty_strands(self):
         self.assertEqual(hamming.distance("", ""), 0)
 
-    @unittest.skip
     def test_single_letter_identical_strands(self):
         self.assertEqual(hamming.distance("A", "A"), 0)
 
-    @unittest.skip
     def test_single_letter_different_strands(self):
         self.assertEqual(hamming.distance("G", "T"), 1)
 
