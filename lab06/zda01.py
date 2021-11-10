@@ -5,6 +5,8 @@ class hamming:
     def distance(jeden, dwa):
         if len(jeden) != len(dwa):
             raise ValueError("Error")
+        elif (jeden == "" and dwa != "") or (jeden != "" and dwa == ""):
+            raise ValueError("Error")
         else:
             suma = 0
             for x in range(0, len(jeden)):
@@ -37,12 +39,10 @@ class HammingTest(unittest.TestCase):
         with self.assertRaisesWithMessage(ValueError):
             hamming.distance("ATA", "AGTG")
 
-    @unittest.skip
     def test_disallow_left_empty_strand(self):
         with self.assertRaisesWithMessage(ValueError):
             hamming.distance("", "G")
 
-    @unittest.skip
     def test_disallow_right_empty_strand(self):
         with self.assertRaisesWithMessage(ValueError):
             hamming.distance("G", "")
